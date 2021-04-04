@@ -27,5 +27,52 @@ public class UserService {
         return (List<User>) repository.findAll();
     }
 
+    public User findUserById(Long id) {
+        return repository.findById(id).get();
+    }
+
+    public User createUser(User user) {
+        return repository.save(user);
+    }
+
+    public Integer deleteUser(Long id) {
+        repository.deleteById(id);
+        return 1;
+    }
+
+    public Integer updateUser(Long id, User user) {
+        if (repository.findById(id).isPresent()) {
+            User originalUser = repository.findById(id).get();
+
+            if (user.getUsername() != null) {
+                originalUser.setUsername(user.getUsername());
+            }
+
+            if (user.getEmail() != null) {
+                originalUser.setEmail(user.getEmail());
+            }
+
+            if (user.getFirstName() != null) {
+                originalUser.setFirstName(user.getFirstName());
+            }
+
+            if (user.getLastName() != null) {
+                originalUser.setLastName(user.getLastName());
+            }
+
+            if (user.getPremium() != null) {
+                originalUser.setPremium(user.getPremium());
+            }
+
+            if (user.getPassword() != null) {
+                originalUser.setPassword(user.getPassword());
+            }
+
+            repository.save(originalUser);
+            // TODO: update all fields for non null fields
+        }
+        return 1;
+    }
+
     // TODO: Add CRUD operations for users
 }
