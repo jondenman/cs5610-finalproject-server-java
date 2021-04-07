@@ -69,10 +69,8 @@ public class UserService {
             }
 
             repository.save(originalUser);
-            // TODO: update all fields for non null fields
         }
         return 1;
     }
 
-    // TODO: Add CRUD operations for users
 }
