@@ -19,11 +19,25 @@ public class PostController {
         return service.findAllPosts();
     }
 
-    @PostMapping("/api/users/{uid}/posts")
-    public Post createPostForUser(
-        @PathVariable("uid") Long userId,
-        @RequestBody Post post) {
-        return service.createPostForUser(userId, post);
+//    @PostMapping("/api/users/{uid}/posts")
+//    public Post createPostForUser(
+//        @PathVariable("uid") Long userId,
+//        @RequestBody Post post) {
+//        return service.createPostForUser(userId, post);
+//    }
+
+    @PostMapping("api/collections/{cid}/posts")
+    public Post createPostOnCollection(
+            @PathVariable("cid") Long collectionId,
+            @RequestBody Post post) {
+        return service.createPostOnCollection(collectionId, post);
+    }
+
+    @PostMapping("api/quotes/{qid}/posts")
+    public Post createPostOnQuote(
+            @PathVariable("qid") Long quoteId,
+            @RequestBody Post post) {
+        return service.createPostOnQuote(quoteId, post);
     }
 
     @DeleteMapping("/api/posts/{pid}")
