@@ -14,10 +14,15 @@ public class Post {
     private Integer likes;
     private Long userId;
 
-    public Post(Long id, String postText, Integer likes) {
+    // Id of the quote or collection the post is for
+    private Long contentId;
+
+    public Post(Long id, String postText, Integer likes, Long userId, Long contentId) {
         this.id = id;
         this.postText = postText;
         this.likes = likes;
+        this.userId = userId;
+        this.contentId = contentId;
     }
 
     public Post() {}
@@ -57,5 +62,13 @@ public class Post {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Long getContentId() {
+        return contentId;
+    }
+
+    public void setContentId(Long contentId) {
+        this.contentId = contentId;
     }
 }

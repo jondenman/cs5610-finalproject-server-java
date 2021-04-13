@@ -16,7 +16,7 @@ public class User {
     private String lastName;
     private String email;
 
-    // TODO: Decide if we want to track premium by boolean or implement a premium user class that extends user
+    // Check if true, show my collections
     private Boolean isPremium;
 
     // constructor with all params

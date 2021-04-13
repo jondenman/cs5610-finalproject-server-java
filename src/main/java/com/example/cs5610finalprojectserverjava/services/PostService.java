@@ -17,8 +17,18 @@ public class PostService {
         return (List<Post>) repository.findAll();
     }
 
-    public Post createPostForUser(Long userId, Post post) {
-        post.setUserId(userId);
+//    public Post createPostForUser(Long userId, Post post) {
+//        post.setUserId(userId);
+//        return repository.save(post);
+//    }
+
+    public Post createPostOnCollection(Long collectionId, Post post) {
+        post.setContentId(collectionId);
+        return repository.save(post);
+    }
+
+    public Post createPostOnQuote(Long quoteId, Post post) {
+        post.setContentId(quoteId);
         return repository.save(post);
     }
 
@@ -42,6 +52,7 @@ public class PostService {
             if (post.getLikes() != null) {
                 originalPost.setLikes(post.getLikes());
             }
+
 
             repository.save(originalPost);
 
