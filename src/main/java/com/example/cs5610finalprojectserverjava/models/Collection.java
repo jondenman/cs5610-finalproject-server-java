@@ -13,6 +13,8 @@ public class Collection {
 
     private String collectionName;
     private Integer likes;
+
+    @ElementCollection
     private List<Long> quoteIds;
     private Long userId;
 
