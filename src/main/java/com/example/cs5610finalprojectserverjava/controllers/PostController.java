@@ -19,6 +19,18 @@ public class PostController {
         return service.findAllPosts();
     }
 
+    @GetMapping("/api/collections/{cid}/posts")
+    public List<Post> findPostsForCollection(
+            @PathVariable("cid") Long collectionId) {
+        return service.findPostsForContent(collectionId);
+    }
+
+    @GetMapping("/api/quotes/{qid}/posts")
+    public List<Post> findPostsForQuote(
+            @PathVariable("qid") Long quoteId) {
+        return service.findPostsForContent(quoteId);
+    }
+
 //    @PostMapping("/api/users/{uid}/posts")
 //    public Post createPostForUser(
 //        @PathVariable("uid") Long userId,

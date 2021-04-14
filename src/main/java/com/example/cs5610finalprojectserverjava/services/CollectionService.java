@@ -21,7 +21,12 @@ public class CollectionService {
         return repository.findById(id).get();
     }
 
-    public Collection createCollection(Collection collection) {
+    public List<Collection> findCollectionsForUser(Long userId) {
+        return repository.findCollectionsForUser(userId);
+    }
+
+    public Collection createCollectionForUser(Long userId, Collection collection) {
+        collection.setUserId(userId);
         return repository.save(collection);
     }
 
