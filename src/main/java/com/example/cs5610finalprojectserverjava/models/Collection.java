@@ -15,11 +15,11 @@ public class Collection {
     private Integer likes;
 
     @ElementCollection
-    private List<Long> quoteIds;
+    private List<String> quoteIds;
     private Long userId;
 
 
-    public Collection(Long id, String collectionName, Integer likes, List<Long> quoteIds, Long userId) {
+    public Collection(Long id, String collectionName, Integer likes, List<String> quoteIds, Long userId) {
         this.id = id;
         this.collectionName = collectionName;
         this.likes = likes;
@@ -51,11 +51,11 @@ public class Collection {
         this.likes = likes;
     }
 
-    public List<Long> getQuoteIds() {
+    public List<String> getQuoteIds() {
         return quoteIds;
     }
 
-    public void setQuoteIds(List<Long> quoteIds) {
+    public void setQuoteIds(List<String> quoteIds) {
         this.quoteIds = quoteIds;
     }
 
