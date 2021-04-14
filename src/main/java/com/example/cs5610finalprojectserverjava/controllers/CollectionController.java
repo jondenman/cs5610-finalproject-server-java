@@ -25,11 +25,18 @@ public class CollectionController {
         return service.findCollectionById(id);
     }
 
-    @PostMapping("api/collections")
-    public Collection createCollection(
+    @GetMapping("api/users/{uid}/collections")
+    public List<Collection> findCollectionsForUser(
+            @PathVariable("uid") Long userId) {
+        return service.findCollectionsForUser(userId);
+    }
+
+    @PostMapping("api/users/{uid}/collections")
+    public Collection createCollectionForUser(
+            @PathVariable("uid") Long userId,
             @RequestBody Collection collection
     ) {
-        return service.createCollection(collection);
+        return service.createCollectionForUser(userId, collection);
     }
 
     @DeleteMapping("api/collections/{cid}")
