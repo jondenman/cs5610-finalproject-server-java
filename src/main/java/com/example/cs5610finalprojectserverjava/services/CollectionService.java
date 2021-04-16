@@ -1,10 +1,13 @@
 package com.example.cs5610finalprojectserverjava.services;
 
 import com.example.cs5610finalprojectserverjava.models.Collection;
+import com.example.cs5610finalprojectserverjava.models.User;
 import com.example.cs5610finalprojectserverjava.repositories.CollectionRepository;
+import com.example.cs5610finalprojectserverjava.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,9 +28,19 @@ public class CollectionService {
         return repository.findCollectionsForUser(userId);
     }
 
+    public List<Collection> findFollowedCollectionsForUser(Long userId) {
+        return repository.findCollectionsFollowedByUser(userId);
+//        List<Collection> results = new ArrayList<>();
+//        for ()
+    }
+
     public Collection createCollectionForUser(Long userId, Collection collection) {
         collection.setUserId(userId);
-        return repository.save(collection);
+        if (repository.findCollectionByCollectionName(collection.getCollectionName()) == null) {
+            return repository.save(collection);
+        } else {
+            return new Collection();
+        }
     }
 
     public Integer deleteCollection(Long id) {

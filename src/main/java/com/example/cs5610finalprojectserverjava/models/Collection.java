@@ -27,6 +27,8 @@ public class Collection {
         this.userId = userId;
     }
 
+    public Collection() {}
+
     public Long getId() {
         return id;
     }

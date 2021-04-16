@@ -12,4 +12,7 @@ public interface PostRepository extends CrudRepository<Post, Long> {
 
     @Query(value = "SELECT * FROM posts WHERE contentId=:cid", nativeQuery = true)
     public List<Post> findPostsForContent(@Param("cid") Long contentId);
+
+    @Query(value = "SELECT * FROM posts WHERE userId=:uid", nativeQuery = true)
+    public List<Post> findPostsForUser(@Param("uid") Long userId);
 }

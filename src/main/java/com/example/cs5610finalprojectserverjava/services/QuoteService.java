@@ -34,13 +34,13 @@ public class QuoteService {
         if (repository.findById(id).isPresent()) {
             Quote originalQuote = repository.findById(id).get();
 
-            if (quote.getQuoteText() != null) {
-                originalQuote.setQuoteText(quote.getQuoteText());
-            }
-
-            if (quote.getApiId() != null) {
-                originalQuote.setApiId(quote.getApiId());
-            }
+//            if (quote.getQuoteText() != null) {
+//                originalQuote.setQuoteText(quote.getQuoteText());
+//            }
+//
+//            if (quote.getApiId() != null) {
+//                originalQuote.setApiId(quote.getApiId());
+//            }
 
             repository.save(originalQuote);
         }
