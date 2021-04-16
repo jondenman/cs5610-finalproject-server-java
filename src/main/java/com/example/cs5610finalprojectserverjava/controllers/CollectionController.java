@@ -31,6 +31,12 @@ public class CollectionController {
         return service.findCollectionsForUser(userId);
     }
 
+    @GetMapping("api/users/{uid}/followed")
+    public List<Collection> findFollowedCollectionsForUser(
+            @PathVariable("uid") Long userId) {
+        return service.findFollowedCollectionsForUser(userId);
+    }
+
     @PostMapping("api/users/{uid}/collections")
     public Collection createCollectionForUser(
             @PathVariable("uid") Long userId,

@@ -31,6 +31,12 @@ public class PostController {
         return service.findPostsForContent(quoteId);
     }
 
+    @GetMapping("api/users/{uid}/posts")
+    public List<Post> findPostsForUser(
+            @PathVariable("uid") Long userId) {
+        return service.findPostsForUser(userId);
+    }
+
 //    @PostMapping("/api/users/{uid}/posts")
 //    public Post createPostForUser(
 //        @PathVariable("uid") Long userId,

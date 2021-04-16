@@ -1,6 +1,7 @@
 package com.example.cs5610finalprojectserverjava.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -15,12 +16,18 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+    private String bio;
+
+    @ElementCollection
+    private List<Long> followedCollections;
 
     // Check if true, show my collections
     private Boolean isPremium;
 
     // constructor with all params
-    public User(long id, String username, String password, String firstName, String lastName, String email, Boolean isPremium) {
+    public User(long id, String username, String password, String firstName,
+                String lastName, String email, Boolean isPremium, String bio,
+                List<Long> followedCollections) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -28,6 +35,8 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.isPremium = isPremium;
+        this.bio = bio;
+        this.followedCollections = followedCollections;
     }
 
     // empty constructor
@@ -89,6 +98,22 @@ public class User {
 
     public void setPremium(Boolean premium) {
         isPremium = premium;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public List<Long> getFollowedCollections() {
+        return followedCollections;
+    }
+
+    public void setFollowedCollections(List<Long> followedCollections) {
+        this.followedCollections = followedCollections;
     }
 }
 

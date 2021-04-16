@@ -21,6 +21,10 @@ public class PostService {
         return repository.findPostsForContent(contentId);
     }
 
+    public List<Post> findPostsForUser(Long userId) {
+        return repository.findPostsForUser(userId);
+    }
+
 //    public Post createPostForUser(Long userId, Post post) {
 //        post.setUserId(userId);
 //        return repository.save(post);
