@@ -34,6 +34,16 @@ public class CollectionService {
 //        for ()
     }
 
+    public List<Collection> findCollectionsForList(List<Long> collectionIdList) {
+        List<Collection> results = new ArrayList<Collection>();
+        for (Long id : collectionIdList) {
+            Collection toAdd = findCollectionById(id);
+            results.add(toAdd);
+        }
+
+        return results;
+    }
+
     public Collection createCollectionForUser(Long userId, Collection collection) {
         collection.setUserId(userId);
         if (repository.findCollectionByCollectionName(collection.getCollectionName()) == null) {

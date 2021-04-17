@@ -1,7 +1,10 @@
 package com.example.cs5610finalprojectserverjava.controllers;
 
 import com.example.cs5610finalprojectserverjava.models.Collection;
+import com.example.cs5610finalprojectserverjava.models.User;
 import com.example.cs5610finalprojectserverjava.services.CollectionService;
+import com.example.cs5610finalprojectserverjava.services.UserService;
+import com.mysql.cj.xdevapi.JsonArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +16,9 @@ public class CollectionController {
 
     @Autowired
     CollectionService service;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping("api/collections")
     public List<Collection> findAllCollections() {
@@ -31,10 +37,19 @@ public class CollectionController {
         return service.findCollectionsForUser(userId);
     }
 
+    @GetMapping("api/collections/list")
+    public List<Collection> findCollectionsForList(
+            @RequestBody User user) {
+        List<Long> list = user.getFollowedCollections();
+        return service.findCollectionsForList(list);
+    }
+
     @GetMapping("api/users/{uid}/followed")
     public List<Collection> findFollowedCollectionsForUser(
             @PathVariable("uid") Long userId) {
-        return service.findFollowedCollectionsForUser(userId);
+        User user = userService.findUserById(userId);
+        List<Long> list = user.getFollowedCollections();
+        return service.findCollectionsForList(list);
     }
 
     @PostMapping("api/users/{uid}/collections")
