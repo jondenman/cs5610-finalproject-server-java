@@ -17,6 +17,7 @@ public class User {
     private String lastName;
     private String email;
     private String bio;
+    private String phoneNum;
 
     @ElementCollection
     private List<Long> followedCollections;
@@ -27,7 +28,7 @@ public class User {
     // constructor with all params
     public User(long id, String username, String password, String firstName,
                 String lastName, String email, Boolean isPremium, String bio,
-                List<Long> followedCollections) {
+                List<Long> followedCollections, String phoneNum) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -37,6 +38,7 @@ public class User {
         this.isPremium = isPremium;
         this.bio = bio;
         this.followedCollections = followedCollections;
+        this.phoneNum = phoneNum;
     }
 
     // empty constructor
@@ -114,6 +116,14 @@ public class User {
 
     public void setFollowedCollections(List<Long> followedCollections) {
         this.followedCollections = followedCollections;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 }
 

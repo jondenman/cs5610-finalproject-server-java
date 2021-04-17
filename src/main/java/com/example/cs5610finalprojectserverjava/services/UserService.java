@@ -94,6 +94,10 @@ public class UserService {
                 originalUser.setFollowedCollections(user.getFollowedCollections());
             }
 
+            if (user.getPhoneNum() != null) {
+                originalUser.setPhoneNum(user.getPhoneNum());
+            }
+
             repository.save(originalUser);
         }
         return 1;
