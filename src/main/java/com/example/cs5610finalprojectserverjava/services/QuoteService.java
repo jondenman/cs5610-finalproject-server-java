@@ -17,7 +17,7 @@ public class QuoteService {
         return (List<Quote>) repository.findAll();
     }
 
-    public Quote findQuoteById(Long id) {
+    public Quote findQuoteById(String id) {
         return repository.findById(id).get();
     }
 
@@ -25,12 +25,12 @@ public class QuoteService {
         return repository.save(quote);
     }
 
-    public Integer deleteQuote(Long id) {
+    public Integer deleteQuote(String id) {
         repository.deleteById(id);
         return 1;
     }
 
-    public Integer updateQuote(Long id, Quote quote) {
+    public Integer updateQuote(String id, Quote quote) {
         if (repository.findById(id).isPresent()) {
             Quote originalQuote = repository.findById(id).get();
 

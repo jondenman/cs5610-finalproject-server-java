@@ -22,7 +22,7 @@ public class QuoteController {
 
     @GetMapping("api/quotes/{qid}")
     public Quote findQuoteById(
-            @PathVariable("qid") Long id) {
+            @PathVariable("qid") String id) {
         return service.findQuoteById(id);
     }
 
@@ -35,13 +35,13 @@ public class QuoteController {
 
     @DeleteMapping("api/quotes/{qid}")
     public Integer deleteQuote(
-            @PathVariable("qid") Long id) {
+            @PathVariable("qid") String id) {
         return service.deleteQuote(id);
     }
 
     @PutMapping("api/quotes/{qid}")
     public Integer updateQuote(
-            @PathVariable("qid") Long id,
+            @PathVariable("qid") String id,
             @RequestBody Quote quote) {
         return service.updateQuote(id, quote);
     }
