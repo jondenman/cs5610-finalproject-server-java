@@ -15,7 +15,7 @@ public class PostController {
     @Autowired
     PostService service;
 
-    @GetMapping("/api/posts")
+    @GetMapping("/api/collections/posts")
     public List<Post> findAllPosts() {
         return service.findAllPosts();
     }
@@ -26,13 +26,13 @@ public class PostController {
         return service.findPostsForContent(collectionId);
     }
 
-    @GetMapping("/api/quotes/{qid}/posts")
-    public List<Post> findPostsForQuote(
-            @PathVariable("qid") Long quoteId) {
-        return service.findPostsForContent(quoteId);
-    }
+//    @GetMapping("/api/quotes/{qid}/posts")
+//    public List<Post> findPostsForQuote(
+//            @PathVariable("qid") Long quoteId) {
+//        return service.findPostsForContent(quoteId);
+//    }
 
-    @GetMapping("api/users/{uid}/posts")
+    @GetMapping("api/users/{uid}/collections/posts")
     public List<Post> findPostsForUser(
             @PathVariable("uid") Long userId) {
         return service.findPostsForUser(userId);
@@ -52,20 +52,20 @@ public class PostController {
         return service.createPostOnCollection(collectionId, post);
     }
 
-    @PostMapping("api/quotes/{qid}/posts")
-    public Post createPostOnQuote(
-            @PathVariable("qid") Long quoteId,
-            @RequestBody Post post) {
-        return service.createPostOnQuote(quoteId, post);
-    }
+//    @PostMapping("api/quotes/{qid}/posts")
+//    public Post createPostOnQuote(
+//            @PathVariable("qid") Long quoteId,
+//            @RequestBody Post post) {
+//        return service.createPostOnQuote(quoteId, post);
+//    }
 
-    @DeleteMapping("/api/posts/{pid}")
+    @DeleteMapping("/api/collections/posts/{pid}")
     public Integer deletePost(
             @PathVariable("pid") Long id) {
         return service.deletePost(id);
     }
 
-    @PutMapping("/api/posts/{pid}")
+    @PutMapping("/api/collections/posts/{pid}")
     public Integer updatePost(
             @PathVariable("pid") Long id,
             @RequestBody Post post) {

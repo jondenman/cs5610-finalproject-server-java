@@ -10,9 +10,9 @@ import java.util.List;
 
 public interface PostRepository extends CrudRepository<Post, Long> {
 
-    @Query(value = "SELECT * FROM posts WHERE contentId=:cid", nativeQuery = true)
-    public List<Post> findPostsForContent(@Param("cid") Long contentId);
+    @Query(value = "SELECT * FROM posts WHERE collection_id=:cid", nativeQuery = true)
+    public List<Post> findPostsForContent(@Param("cid") Long collectionId);
 
-    @Query(value = "SELECT * FROM posts WHERE userId=:uid", nativeQuery = true)
+    @Query(value = "SELECT * FROM posts WHERE user_id=:uid", nativeQuery = true)
     public List<Post> findPostsForUser(@Param("uid") Long userId);
 }

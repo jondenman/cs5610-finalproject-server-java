@@ -3,8 +3,8 @@ package com.example.cs5610finalprojectserverjava.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="posts")
-public class Post {
+@Table(name="quotePosts")
+public class QuotePost {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,17 +15,17 @@ public class Post {
     private Long userId;
 
     // Id of the quote or collection the post is for
-    private Long collectionId;
+    private String quoteId;
 
-    public Post(Long id, String postText, Integer likes, Long userId, Long collectionId) {
+    public QuotePost(Long id, String postText, Integer likes, Long userId, String quoteId) {
         this.id = id;
         this.postText = postText;
         this.likes = likes;
         this.userId = userId;
-        this.collectionId = collectionId;
+        this.quoteId = quoteId;
     }
 
-    public Post() {}
+    public QuotePost() {}
 
 
 
@@ -64,11 +64,11 @@ public class Post {
         this.userId = userId;
     }
 
-    public Long getCollectionId() {
-        return collectionId;
+    public String getQuoteId() {
+        return quoteId;
     }
 
-    public void setContentId(Long collectionId) {
-        this.collectionId = collectionId;
+    public void setQuoteId(String quoteId) {
+        this.quoteId = quoteId;
     }
 }
