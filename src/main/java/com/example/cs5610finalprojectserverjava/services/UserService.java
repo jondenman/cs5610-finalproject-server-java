@@ -41,7 +41,8 @@ public class UserService {
         if (existingUser != null) {
             return existingUser;
         } else {
-            return null;
+            return new User();
+//            return null;
         }
         //return repository.findUserByCredentials(username, password);
     }
@@ -53,7 +54,8 @@ public class UserService {
             return newUser;
         } else {
             // returns empty user is already exists.
-            return null;
+            return new User();
+//            return null;
         }
     }
 

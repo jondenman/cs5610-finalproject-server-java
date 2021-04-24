@@ -11,8 +11,8 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
-//@CrossOrigin(origins = {"http://localhost:3000"})
-@CrossOrigin(origins = {"https://cs5610-final-project-client.herokuapp.com"}, allowCredentials = "true")
+@CrossOrigin(origins = {"*"})
+//@CrossOrigin(origins = {"https://cs5610-final-project-client.herokuapp.com"}, allowCredentials = "true")
 public class UserController {
 
     @Autowired
@@ -32,25 +32,27 @@ public class UserController {
     @PostMapping("/api/users/register")
     public User registerUser(
             @RequestBody User credentials, HttpSession session) {
-        User newUser = service.registerUser(credentials);
-        if (newUser == null) {
-            return null;
-        } else {
-            session.setAttribute("profile", newUser);
-            return newUser;
-        }
+        return service.registerUser(credentials);
+//        User newUser = service.registerUser(credentials);
+//        if (newUser == null) {
+//            return null;
+//        } else {
+//            session.setAttribute("profile", newUser);
+//            return newUser;
+//        }
     }
 
     @PostMapping("/api/users/login")
     public User loginUser(
             @RequestBody User credentials, HttpSession session) {
-        User existingUser =  service.loginUser(credentials.getUsername(), credentials.getPassword());
-        if (existingUser != null) {
-            session.setAttribute("profile", existingUser);
-            return existingUser;
-        } else {
-            return null;
-        }
+        return service.loginUser(credentials.getUsername(), credentials.getPassword());
+//        User existingUser =  service.loginUser(credentials.getUsername(), credentials.getPassword());
+//        if (existingUser != null) {
+//            session.setAttribute("profile", existingUser);
+//            return existingUser;
+//        } else {
+//            return null;
+//        }
     }
 
     @PostMapping("/api/users/profile")
