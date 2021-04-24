@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ldap.embedded.EmbeddedLdapProperties;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
 //@CrossOrigin(origins = {"http://localhost:3000"})
-@CrossOrigin(origins = {"*"})
+@CrossOrigin(origins = {"https://cs5610-final-project-client.herokuapp.com"}, allowCredentials = "true")
 public class UserController {
 
     @Autowired
@@ -30,14 +31,37 @@ public class UserController {
 
     @PostMapping("/api/users/register")
     public User registerUser(
-            @RequestBody User user) {
-        return service.registerUser(user);
+            @RequestBody User credentials, HttpSession session) {
+        User newUser = service.registerUser(credentials);
+        if (newUser == null) {
+            return null;
+        } else {
+            session.setAttribute("profile", newUser);
+            return newUser;
+        }
     }
 
     @PostMapping("/api/users/login")
     public User loginUser(
-            @RequestBody User credentials) {
-        return service.loginUser(credentials.getUsername(), credentials.getPassword());
+            @RequestBody User credentials, HttpSession session) {
+        User existingUser =  service.loginUser(credentials.getUsername(), credentials.getPassword());
+        if (existingUser != null) {
+            session.setAttribute("profile", existingUser);
+            return existingUser;
+        } else {
+            return null;
+        }
+    }
+
+    @PostMapping("/api/users/profile")
+    public User profile(HttpSession session) {
+        User currentUser = (User)session.getAttribute("profile");
+        return currentUser;
+    }
+
+    @PostMapping("/api/users/logout")
+    public void logout(HttpSession session) {
+        session.invalidate();
     }
 
     @PostMapping("/api/users")

@@ -37,15 +37,23 @@ public class UserService {
 //    }
 
     public User loginUser(String username, String password) {
-        return repository.findUserByCredentials(username, password);
+        User existingUser = repository.findUserByCredentials(username, password);
+        if (existingUser != null) {
+            return existingUser;
+        } else {
+            return null;
+        }
+        //return repository.findUserByCredentials(username, password);
     }
 
     public User registerUser(User user) {
-        if (repository.findUserByUsername(user.getUsername()) == null) {
-            return repository.save(user);
+        User existingUser = repository.findUserByUsername(user.getUsername());
+        if (existingUser == null) {
+            User newUser = repository.save(user);
+            return newUser;
         } else {
             // returns empty user is already exists.
-            return new User();
+            return null;
         }
     }
 
@@ -62,8 +70,13 @@ public class UserService {
         if (repository.findById(id).isPresent()) {
             User originalUser = repository.findById(id).get();
 
-            if (user.getUsername() != null) {
-                originalUser.setUsername(user.getUsername());
+            if (user.getUsername() != null &&
+                    user.getUsername() != originalUser.getUsername()) {
+                if (repository.findUserByUsername(user.getUsername()) == null) {
+                    originalUser.setUsername(user.getUsername());
+                } else {
+                    return -1;
+                }
             }
 
             if (user.getEmail() != null) {
