@@ -72,9 +72,9 @@ public class UserService {
         if (repository.findById(id).isPresent()) {
             User originalUser = repository.findById(id).get();
 
-            if (user.getUsername() != null &&
-                    id != originalUser.getId()) {
-                if (repository.findUserByUsername(user.getUsername()) == null) {
+            if (user.getUsername() != null) {
+                User nameCheck = repository.findUserByUsername(user.getUsername());
+                if (nameCheck == null || nameCheck.getId() == id) {
                     originalUser.setUsername(user.getUsername());
                 } else {
                     return -1;
